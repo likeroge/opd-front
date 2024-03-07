@@ -4,7 +4,43 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
+      {
+        path: '',
+        name: 'index',
+        component: () => import('pages/IndexPage.vue'),
+      },
+      {
+        path: 'login',
+        name: 'login',
+        meta: { requiresAuth: false },
+        component: () => import('pages/LoginPage.vue'),
+      },
+      {
+        path: 'journal',
+        name: 'journal',
+        component: () => import('pages/JournalPage/journal-page.vue'),
+        children: [
+          {
+            path: '',
+            name: 'journal',
+            component: () =>
+              import('pages/JournalPage/components/JournalsList.vue'),
+          },
+          {
+            path: 'new',
+            name: 'new',
+            component: () =>
+              import('pages/JournalPage/components/JournalForm.vue'),
+          },
+          {
+            path: ':id',
+            component: () =>
+              import('pages/JournalPage/components/JournalItem.vue'),
+          },
+        ],
+      },
+    ],
   },
 
   // Always leave this as last one,
