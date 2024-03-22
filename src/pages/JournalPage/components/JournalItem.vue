@@ -1,6 +1,6 @@
 <template>
   <h5>Запись № {{ journalNumber }}</h5>
-  <p>{{ journalText }}</p>
+  <p class="journal-text">{{ journalText }}</p>
   <BackButton />
 </template>
 
@@ -22,3 +22,9 @@ onMounted(async () => {
   journalText.value = data.text;
 });
 </script>
+
+<style scoped lang="scss">
+.journal-text {
+  white-space: pre-line;
+}
+</style>

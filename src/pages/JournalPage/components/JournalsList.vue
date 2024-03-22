@@ -16,6 +16,7 @@ import { onMounted, ref } from 'vue';
 import { api } from 'src/boot/axios';
 import { IJournal } from 'src/models/Journal';
 import { useRouter } from 'vue-router';
+import { AxiosError } from 'axios';
 
 // const airline = ref(null);
 // const category = ref(null);
@@ -30,13 +31,20 @@ const onNewJournalClick = () => {
   router.push('/journal/new');
 };
 
-const onTableRowClick = (evt: Event, row: IJournal) => {
-  console.log(row.text);
+const onTableRowClick = (_: Event, row: IJournal) => {
   router.push(`/journal/${row.id}`);
 };
 
 onMounted(async () => {
-  const { data } = await api.get('journal');
-  journals.value = data;
+  try {
+    const { data } = await api.get('journal');
+    journals.value = data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.response?.data);
+    } else {
+      console.log(error as Error);
+    }
+  }
 });
 </script>

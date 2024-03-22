@@ -28,8 +28,30 @@
     <q-drawer side="right" v-model="leftDrawerOpen" bordered>
       <q-list>
         <q-item-label header> Меню </q-item-label>
-        <q-item clickable to="/">Главная</q-item>
-        <q-item clickable to="/journal">ЖПС</q-item>
+        <q-item
+          active-class="my-menu-link"
+          :active="link === 'home'"
+          @click="link = 'home'"
+          clickable
+          to="/"
+          >Главная</q-item
+        >
+        <q-item
+          active-class="my-menu-link"
+          :active="link === 'journal'"
+          @click="link = 'journal'"
+          clickable
+          to="/journal"
+          >ЖПС</q-item
+        >
+        <q-item
+          active-class="my-menu-link"
+          :active="link === 'map'"
+          @click="link = 'map'"
+          clickable
+          to="/map"
+          >Карта</q-item
+        >
       </q-list>
     </q-drawer>
     <q-footer elevated>
@@ -50,6 +72,7 @@ import { useRoute, useRouter } from 'vue-router';
 // console.log(route.query.code);
 
 const leftDrawerOpen = ref(false);
+const link = ref('home');
 
 const router = useRouter();
 
@@ -64,3 +87,12 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
+
+<style lang="scss" scoped>
+.my-menu-link {
+  color: white;
+  // border-bottom: 2px solid #1976d2;
+  // border-top: 2px solid #1976d2;
+  background: #1976d2;
+}
+</style>
