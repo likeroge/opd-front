@@ -37,7 +37,8 @@ const onTableRowClick = (_: Event, row: IJournal) => {
 
 onMounted(async () => {
   try {
-    const { data } = await api.get('journal');
+    const { data } = await api.get('journal/all');
+    console.log(data);
     journals.value = data;
   } catch (error) {
     if (error instanceof AxiosError) {

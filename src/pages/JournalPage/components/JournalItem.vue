@@ -17,7 +17,8 @@ const journalText = ref(null as string | null);
 const route = useRoute();
 
 onMounted(async () => {
-  const { data } = await api.get<IJournal>(`journal/find/${route.params.id}`);
+  // const { data } = await api.get<IJournal>(`journal/find/${route.params.id}`);
+  const { data } = await api.get<IJournal>(`journal/id/${route.params.id}`);
   journalNumber.value = data.id;
   journalText.value = data.text;
 });

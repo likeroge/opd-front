@@ -27,9 +27,11 @@ const login = async (e: Event) => {
       email: email.value,
       password: password.value,
     });
-    // console.log(data.access_token);
-    localStorage.setItem('token', data.access_token);
-    localStorage.setItem('userId', data.userId);
+    console.log(data);
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('userId', data.user.id);
+    // localStorage.setItem('token', data.access_token);
+    // localStorage.setItem('userId', data.userId);
     router.push('/');
   } catch (err) {
     errorMessage.value = 'Wrong login or password';

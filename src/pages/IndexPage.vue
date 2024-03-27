@@ -69,13 +69,20 @@
 </template>
 
 <script setup lang="ts">
-import { Meta } from 'components/models';
-import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { api } from 'src/boot/axios';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-
-
-const meta = ref<Meta>({
-  totalCount: 1200,
+const router = useRouter();
+onMounted(async () => {
+  try {
+    const { data } = await api.get('/');
+    console.log(data);
+  } catch (error) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('firstName');
+    router.push('/login');
+  }
 });
 </script>

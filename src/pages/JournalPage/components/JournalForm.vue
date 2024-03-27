@@ -22,6 +22,7 @@ import { IJournal } from 'src/models/Journal';
 import { onMounted, ref } from 'vue';
 import BackButton from 'src/uikit/BackButton.vue';
 import { useQuasar } from 'quasar';
+import { AxiosError } from 'axios';
 
 const newJournalText = ref('');
 const $q = useQuasar();
@@ -30,21 +31,29 @@ const onSubmit = async (e: Event) => {
   e.preventDefault();
   try {
     await api.post('journal', {
-      userId: Number(localStorage.getItem('userId')),
+      // user_id: Number(localStorage.getItem('userId')),
       text: newJournalText.value,
+      department_id: 1,
     });
     $q.notify({
       message: 'Запись добавлена',
       color: 'green-14',
     });
   } catch (error) {
-    console.warn(error);
+    if (error instanceof AxiosError) {
+      console.log(error.response?.data);
+    }
+    console.warn(error as Error);
   }
 };
 
 onMounted(async () => {
-  const { data: journal } = await api.get<IJournal>('journal/last');
-  newJournalText.value = journal.text;
+  try {
+    const { data: journal } = await api.get<IJournal>('journal/last');
+    newJournalText.value = journal.text;
+  } catch (error) {
+    console.warn(error);
+  }
 });
 </script>
 

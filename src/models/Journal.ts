@@ -3,5 +3,6 @@ export interface IJournal {
   text: string;
   created_at: Date;
   updated_at: Date;
-  userId: number;
+  user_id: number;
+  department_id: number;
 }

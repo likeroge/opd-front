@@ -22,6 +22,55 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/map-page/map-page.vue'),
       },
       {
+        path: 'admin',
+        name: 'admin',
+        component: () => import('pages/admin-page/admin-index-page.vue'),
+        children: [
+          {
+            path: '',
+            component: () =>
+              import('pages/admin-page/components/AdminItemsList.vue'),
+          },
+          {
+            path: 'database',
+            component: () =>
+              import(
+                'pages/admin-page/admin-database-page/admin-database-page.vue'
+              ),
+            children: [
+              {
+                path: '',
+                component: () =>
+                  import(
+                    'pages/admin-page/admin-database-page/components/DbTablesList.vue'
+                  ),
+              },
+              {
+                path: 'user',
+                component: () =>
+                  import(
+                    'pages/admin-page/admin-database-page/components/DbUsersList.vue'
+                  ),
+              },
+              {
+                path: 'journal',
+                component: () =>
+                  import(
+                    'pages/admin-page/admin-database-page/components/DbJournalsList.vue'
+                  ),
+              },
+              {
+                path: 'department',
+                component: () =>
+                  import(
+                    'pages/admin-page/admin-database-page/components/DbDepartmentsList.vue'
+                  ),
+              },
+            ],
+          },
+        ],
+      },
+      {
         path: 'journal',
         name: 'journal',
         component: () => import('pages/JournalPage/journal-page.vue'),

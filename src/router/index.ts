@@ -40,10 +40,13 @@ export default route(function (/* { store, ssrContext } */) {
       next('/login');
     } else if (token && to.path === '/login') {
       next('/');
-    } else {
+    }
+    // else if (token && to.path !== '/login' ) {
+    //   next();
+    // }
+    else {
       next();
     }
   });
-
   return Router;
 });

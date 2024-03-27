@@ -27,7 +27,7 @@
 
     <q-drawer side="right" v-model="leftDrawerOpen" bordered>
       <q-list>
-        <q-item-label header> Меню </q-item-label>
+        <q-item-label class="text-h6" header> Меню </q-item-label>
         <q-item
           active-class="my-menu-link"
           :active="link === 'home'"
@@ -51,6 +51,14 @@
           clickable
           to="/map"
           >Карта</q-item
+        >
+        <q-item
+          active-class="my-menu-link"
+          :active="link === 'admin'"
+          @click="link = 'admin'"
+          clickable
+          to="/admin"
+          >Админка</q-item
         >
       </q-list>
     </q-drawer>
