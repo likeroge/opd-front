@@ -77,7 +77,6 @@ const router = useRouter();
 onMounted(async () => {
   try {
     const { data } = await api.get('/');
-    console.log(data);
   } catch (error) {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');

@@ -94,6 +94,33 @@ const routes: RouteRecordRaw[] = [
           },
         ],
       },
+      {
+        path: 'tankering',
+        name: 'tankering',
+        component: () => import('pages/tankering-page/index.vue'),
+        children: [
+          {
+            path: '',
+            name: 'tankering',
+            component: () =>
+              import('pages/tankering-page/components/TankeringTable.vue'),
+          },
+          {
+            path: 'calculator',
+            name: 'calculator',
+            component: () =>
+              import('pages/tankering-page/components/TankeringForm.vue'),
+          },
+          {
+            path: 'results',
+            name: 'results',
+            component: () =>
+              import(
+                'pages/tankering-page/components/TankeringResultsTable.vue'
+              ),
+          },
+        ],
+      },
     ],
   },
 

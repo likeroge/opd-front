@@ -51,7 +51,6 @@ onMounted(async () => {
   //     fullName: user.first_name + ' ' + user.last_name,
   //   };
   // });
-  console.log(data);
   isLoaded.value = true;
 });
 </script>

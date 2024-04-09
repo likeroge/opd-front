@@ -38,7 +38,6 @@ const isLoaded = ref(false);
 onMounted(async () => {
   const { data } = await api.get('/department/all');
   departments.value = data;
-  console.log(data);
   isLoaded.value = true;
 });
 </script>

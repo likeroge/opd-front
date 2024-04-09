@@ -60,6 +60,14 @@
           to="/admin"
           >Админка</q-item
         >
+        <q-item
+          active-class="my-menu-link"
+          :active="link === 'tankering'"
+          @click="link = 'tankering'"
+          clickable
+          to="/tankering"
+          >Танкирование</q-item
+        >
       </q-list>
     </q-drawer>
     <q-footer elevated>
@@ -72,12 +80,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-
-// const route = useRoute();
-// const router = useRouter();
-// console.log(route.query);
-// console.log(route.query.code);
+import { useRouter } from 'vue-router';
 
 const leftDrawerOpen = ref(false);
 const link = ref('home');
