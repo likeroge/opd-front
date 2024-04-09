@@ -111,14 +111,6 @@ const routes: RouteRecordRaw[] = [
             component: () =>
               import('pages/tankering-page/components/TankeringForm.vue'),
           },
-          {
-            path: 'results',
-            name: 'results',
-            component: () =>
-              import(
-                'pages/tankering-page/components/TankeringResultsTable.vue'
-              ),
-          },
         ],
       },
     ],

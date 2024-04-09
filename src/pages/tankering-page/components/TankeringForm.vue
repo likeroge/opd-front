@@ -3,24 +3,14 @@ import { api } from 'src/boot/axios';
 import BackButton from 'src/uikit/BackButton.vue';
 import { Ref, computed, ref } from 'vue';
 
-const depPrice = ref(0);
-const arrPrice = ref(0);
-const tripTime = ref('');
-const aircraft: Ref<string> = ref('AN-124');
-const tripFuel = ref(0);
+const depPrice = ref();
+const arrPrice = ref();
+const tripTime = ref('00:00');
+const aircraft: Ref<string> = ref('IL-76');
+const tripFuel = ref();
 const calculateResult: Ref<number> = ref(0);
 
 const aircraftTypes = ['AN-124', 'IL-76'];
-
-//Over fuel flow per hour (for every tonn)
-const overFF = {
-  an124: 0.04,
-  il76: 0.027,
-  an12: 0.011,
-};
-
-//Fuel indication delta(error)
-const K = 0.03;
 
 const aircraftType = computed(() => {
   if (aircraft.value === 'AN-124') {
@@ -60,6 +50,7 @@ const onCalculate = async () => {
 </script>
 
 <template>
+  <h6>Калькулятор танкирования</h6>
   <q-form @submit="onCalculate" class="q-mb-md">
     <q-select
       label="Воздушное судно"
@@ -99,7 +90,7 @@ const onCalculate = async () => {
     "
     class="q-pa-md text-white text-center text-h6"
   >
-    MIN EXTRA = {{ calculateResult.toFixed(0) }}
+    MIN EXTRA = {{ calculateResult.toFixed(0) }} T
   </div>
   <div
     v-if="calculateResult < 0"
